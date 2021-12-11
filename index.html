@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Metaballs simulation</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href='http://fonts.googleapis.com/css?family=Lekton&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+	<div id = "container">
+		
+		<header id = "header">
+			<h1>
+				METABALLS SIMULATION
+			</h1>
+		</header>
+		
+		<main id = "main"> 
+			<canvas id="myCanvas" width = "900" height = "700">
+				<p>Your browser does not support the required functionality to play this game.</p>
+				<p>Please update to a modern browser such as <a href="www.google.com/chrome/‎">Google Chrome</a> to play.</p>
+			</canvas>
+		</main>
+		<aside id = "aside">
+		
+			
+			<span class="desc">Rough</span>
+			<label class="switch">
+			  <input type="checkbox" id="state">
+			  <span class="slidr"></span>
+			</label>
+			<span class="desc">Shiny</span>
+			
+			</br>
+			</br>
+			
+			<span class="desc">Stationary</span>
+			<label class="switch">
+			  <input type="checkbox" id="move">
+			  <span class="slidr"></span>
+			</label>
+			<span class="desc">Moving</span>
+			
+			</br>
+			</br>
+			
+			<input type="button" class="button" value="add" onclick="add()">
+			
+			</br>
+			</br>
+			
+			<input type="button" class="button" value="remove" onclick="remove()">
+			
+			</br>
+			</br>
+			
+			<span class="desc">Size: </span></br>
+			<input type="range" class="slider" id="mult" min="10" max="100" value="50">
+			
+		</aside>
+		
+		<div id = "down">
+			<span style = "font-size: 28px">How to</span></br>
+			To move metaballs you can grab them and carry around or switch Stationary/Moving switch. Rough/Shiny slider tells the program about shaders, try it! There are also buttons to add or remove random ball. You can also change their sizes.
+			</br>
+			</br>
+			<span style = "font-size: 28px">Something about</span></br>
+			Metaballs are literally balls that bend when they are near each other. Adding shaders or fancy colors you can make it more interesting. Coding Train made fantastic <a target="_blank" href="https://www.youtube.com/watch?v=ccYLb7cLB1I">video</a> about them. Watch it to learn more!
+		</div>
+		
+		<footer id = "footer">
+			<h2>2019 - 2019 &#9400 All rights reserved.</h2>
+		</footer>
+		
+		
+	</div>
+	<script src="canvas_code.js"></script>
+
+</body>
+</html>
