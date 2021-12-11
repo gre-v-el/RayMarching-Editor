@@ -1,7 +1,6 @@
-import './style.css'
-import * as THREE from 'three'
+import * as THREE from 'https://threejs.org/build/three.module.js'
 
-import { Vector3, Vector2, Quaternion, Euler } from 'three'
+import { Vector3, Quaternion, Euler } from 'https://threejs.org/build/three.module.js'
 
 import vertex from './shaders/vertex_glsl.js'
 import fragment from './shaders/fragment_glsl.js'
