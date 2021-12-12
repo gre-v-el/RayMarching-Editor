@@ -2,6 +2,9 @@
 
 The program is meant to be a 3D modeling software for creating scenes with [ray marching](https://www.youtube.com/watch?v=Cp5WWtMoeKg). The motivation came from the lack of dedicated easy-to-use real-time software of this intent.
 
+
+Current state of the project can be seen [here](https://gre-v-el.github.io/RayMarching-Editor/) 
+
 ---
 
 <br/>
