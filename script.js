@@ -2,9 +2,6 @@ import * as THREE from 'https://threejs.org/build/three.module.js'
 
 import { Vector3, Quaternion, Euler } from 'https://threejs.org/build/three.module.js'
 
-import vertex from './shaders/vertex_glsl.js'
-import fragment from './shaders/fragment_glsl.js'
-
 
 // three.js setups
 var canvasHTML = document.getElementById('canvas');
@@ -12,6 +9,7 @@ var sceneThree = new THREE.Scene();
 var rendererThree = new THREE.WebGLRenderer({ canvas: canvasHTML, antialias: true });
 var cameraThree = new THREE.PerspectiveCamera(45, canvasHTML.clientWidth / canvasHTML.clientWidth, 1, 1000);
 var clock = new THREE.Clock();
+var loader = new THREE.FileLoader();
 
 // fps view
 var script = document.createElement('script');
@@ -40,19 +38,30 @@ var rmUniforms = {
 	rotation: { value: new Quaternion().setFromEuler(new Euler(0, 0, 0)) }
 };
 
-// main display setup
-var quadDisplay = new THREE.Mesh(
-	new THREE.PlaneGeometry(2, 2),
-	new THREE.ShaderMaterial({
-		vertexShader: vertex,
-		fragmentShader: fragment,
-		uniforms: rmUniforms,
-		depthWrite: false,
-		depthTest: false
-	})
-);
-sceneThree.add(quadDisplay);
+// load shaders
+var vertex = '';
+var fragment = '';
+loader.load('/shaders/fragment.glsl', function (data) { fragment = data; countLoads(); })
+loader.load('/shaders/vertex.glsl', function (data) { vertex = data; countLoads(); })
 
+var loadsLeft = 2;
+function countLoads() {
+	loadsLeft--;
+	if (loadsLeft == 0) {
+		// main display setup
+		var quadDisplay = new THREE.Mesh(
+			new THREE.PlaneGeometry(2, 2),
+			new THREE.ShaderMaterial({
+				vertexShader: vertex,
+				fragmentShader: fragment,
+				uniforms: rmUniforms,
+				depthWrite: false,
+				depthTest: false
+			})
+		);
+		sceneThree.add(quadDisplay);
+	}
+}
 
 // vars
 var camPos = new Vector3(0, 0, 2);
