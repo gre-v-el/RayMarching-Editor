@@ -33,7 +33,8 @@ The program is meant to be a 3D modeling software for creating scenes with [ray 
 
 
 ## todo
-  * convert to typescript
+  * convert javascript to typescript
+  * choose UI library
   * movement
     * shift and ctrl to modify movement speed
   * GPU-side data structure for storing objects
@@ -42,16 +43,23 @@ The program is meant to be a 3D modeling software for creating scenes with [ray 
   	* max-wrapper
   	* smooth-min-wrapper
   	* smooth-max-wrapper
+        * mirror
   	* interpolator
   * UI
     * parent-child tree representing the GPU-side data structure
     * object inspector and manipulation
     * custom user-defined objects
-  * some background
+  * background gradient editor / hdri
   * save/load system
-  * lighting
-  * materials
-    * PBR
-    * tri-planar mapping textures
+  * rendering 
+    * lighting
+    * materials
+      * PBR
+      * tri-planar mapping textures
+    * view presets
+      * performant preview
+      * toon shading
+      * moody
+      * production quality
   * electron.js desktop version
   * export to polygonal model files using marching cubes
