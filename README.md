@@ -11,7 +11,7 @@ Current state of the project can be seen [here](https://gre-v-el.github.io/RayMa
 <br/>
 
 ## Current features
-* rendering of a predefined scene
+* ray marching a predefined scene
 * movement
    |  Key  |            Action             |
    | :---: | :---------------------------: |
