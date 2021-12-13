@@ -41,8 +41,8 @@ var rmUniforms = {
 // load shaders
 var vertex = '';
 var fragment = '';
-loader.load('/shaders/fragment.glsl', function (data) { fragment = data; countLoads(); })
-loader.load('/shaders/vertex.glsl', function (data) { vertex = data; countLoads(); })
+loader.load('{{ site.baseurl }}/shaders/fragment.glsl', function (data) { fragment = data; countLoads(); })
+loader.load('{{ site.baseurl }}/shaders/vertex.glsl', function (data) { vertex = data; countLoads(); })
 
 var loadsLeft = 2;
 function countLoads() {
