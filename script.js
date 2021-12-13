@@ -2,6 +2,7 @@ import * as THREE from 'https://threejs.org/build/three.module.js'
 
 import { Vector3, Quaternion, Euler } from 'https://threejs.org/build/three.module.js'
 
+var root = 'https://gre-v-el.github.io/RayMarching-Editor/';
 
 // three.js setups
 var canvasHTML = document.getElementById('canvas');
@@ -41,8 +42,8 @@ var rmUniforms = {
 // load shaders
 var vertex = '';
 var fragment = '';
-loader.load('{{ site.baseurl }}/shaders/fragment.glsl', function (data) { fragment = data; countLoads(); })
-loader.load('{{ site.baseurl }}/shaders/vertex.glsl', function (data) { vertex = data; countLoads(); })
+loader.load(root + '/shaders/fragment.glsl', function (data) { fragment = data; countLoads(); })
+loader.load(root + '/shaders/vertex.glsl', function (data) { vertex = data; countLoads(); })
 
 var loadsLeft = 2;
 function countLoads() {
