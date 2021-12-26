@@ -12,6 +12,7 @@ Current state of the project can be seen [here](https://gre-v-el.github.io/RayMa
 
 ## Current features
 * ray marching a predefined scene
+* phong rendering
 * movement
    |  Key  |            Action             |
    | :---: | :---------------------------: |
@@ -26,7 +27,8 @@ Current state of the project can be seen [here](https://gre-v-el.github.io/RayMa
 
 
 ## Timeline
-  * project start: 11-12-2021
+  * 11-12-2021 - project start
+  * 26-12-2021 - phong shading
 
 ---
 
@@ -36,33 +38,30 @@ Current state of the project can be seen [here](https://gre-v-el.github.io/RayMa
 
 
 ## todo
-  * convert javascript to typescript
-  * choose UI library
-  * movement
-    * shift and ctrl to modify movement speed
-  * GPU-side data structure for storing objects
+  * shift and ctrl to modify movement speed
+  * make UI with react, let user create tree structure
+  * glsl code generator (from user-defined scene structure) with recursive calls
   	* primitives
-  	* min-wrapper
-  	* max-wrapper
-  	* smooth-min-wrapper
-  	* smooth-max-wrapper
-        * mirror
+  	* min
+  	* max
+  	* smooth-min
+  	* difference
+    * mirror
   	* interpolator
+  	* average
+  	* fractals
+  	* user-defined objects
+  * figure out a way for the processor to know the distance to the scene
   * UI
-    * parent-child tree representing the GPU-side data structure
+    * parent-child tree
     * object inspector and manipulation
-    * custom user-defined objects
-  * background gradient editor / hdri
+  * hdri
   * save/load system
   * rendering 
-    * lighting
-    * materials
-      * PBR
-      * tri-planar mapping textures
-    * view presets
-      * performant preview
-      * toon shading
-      * moody
-      * production quality
+    * different materials
+    * tri-planar mapping textures
+    * "post processing effects" 
+      * ambient occlusion
+      * glow
   * electron.js desktop version
   * export to polygonal model files using marching cubes

@@ -7,7 +7,7 @@ var root = 'https://gre-v-el.github.io/RayMarching-Editor/';
 // three.js setups
 var canvasHTML = document.getElementById('canvas');
 var sceneThree = new THREE.Scene();
-var rendererThree = new THREE.WebGLRenderer({ canvas: canvasHTML, antialias: true });
+var rendererThree = new THREE.WebGLRenderer({ canvas: canvasHTML, antialias: false });
 var cameraThree = new THREE.PerspectiveCamera(45, canvasHTML.clientWidth / canvasHTML.clientWidth, 1, 1000);
 var clock = new THREE.Clock();
 var loader = new THREE.FileLoader();
@@ -24,7 +24,7 @@ script.onload = function () {
 script.src = '//mrdoob.github.io/stats.js/build/stats.min.js';
 document.head.appendChild(script);
 
-// locking pointer when rotating
+// lock pointer when moving
 canvasHTML.requestPointerLock = canvasHTML.requestPointerLock ||
 		canvasHTML.mozRequestPointerLock;
 
@@ -35,8 +35,9 @@ document.exitPointerLock = document.exitPointerLock ||
 var rmUniforms = {
 	aspect: { value: cameraThree.aspect },
 	camPos: { value: new Vector3(0, 0, 0) },
-	depthMax: { value: 5 },
-	rotation: { value: new Quaternion().setFromEuler(new Euler(0, 0, 0)) }
+	depthMax: { value: 10 },
+	rotation: { value: new Quaternion().setFromEuler(new Euler(0, 0, 0)) },
+	lightDirection: {value: new Vector3(0.5, 0.7, 0.6)}
 };
 
 // load shaders
@@ -70,7 +71,8 @@ var camRotPitch = new Quaternion();
 var camRotYaw = new Quaternion();
 
 // consts
-const moveSpeed = 2;
+const moveSpeed = 1;
+const mouseSensitivity = 400;
 
 function tick() {
 
@@ -86,8 +88,10 @@ function tick() {
 function cameraTick(dt) {
 
 	if (controls.mouseRight) {
-		camRotPitch.multiply(new Quaternion().setFromEuler(new Euler(controls.mouseDY / 400, 0, 0)));
-		camRotYaw.multiply(new Quaternion().setFromEuler(new Euler(0, controls.mouseDX / 400, 0)));
+
+		camRotPitch.multiply(new Quaternion().setFromEuler(new Euler(controls.mouseDY / mouseSensitivity, 0, 0)));
+
+		camRotYaw.multiply(new Quaternion().setFromEuler(new Euler(0, controls.mouseDX / mouseSensitivity, 0)));
 
 
 		camPos.add( new Vector3(0, 0, 1)
