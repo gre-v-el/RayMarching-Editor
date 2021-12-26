@@ -64,5 +64,6 @@ Current state of the project can be seen [here](https://gre-v-el.github.io/RayMa
     * "post processing effects" 
       * ambient occlusion
       * glow
+    * anti-aliasing
   * electron.js desktop version
   * export to polygonal model files using marching cubes

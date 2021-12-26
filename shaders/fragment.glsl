@@ -107,7 +107,7 @@ float diff(float a, float b){
 // sd scene
 float sdScene(vec3 p){
 
-	return min(min(sdMenger(p + vec3(1.5, 0., 0.)), sdMandelbulb(p - vec3(1.5, 0., 0.))),
+	return min(diff(min(sdMenger(p + vec3(0.6, 0., 0.)), sdMandelbulb(p - vec3(0.6, 0., 0.))), sdBox(p, vec3(0.6, 1.5, 1.5))),
 			sdBox(p + vec3(0., 1.5, 0.), vec3(6., 0.05, 4.)));
 }
 
