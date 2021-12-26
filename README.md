@@ -58,7 +58,8 @@ Current state of the project can be seen [here](https://gre-v-el.github.io/RayMa
   * hdri
   * save/load system
   * rendering 
-    * different materials
+    * support for different materials
+    * support for many lights
     * tri-planar mapping textures
     * "post processing effects" 
       * ambient occlusion
