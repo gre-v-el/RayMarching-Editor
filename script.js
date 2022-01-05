@@ -1,4 +1,4 @@
-var root = ''//'https://gre-v-el.github.io/RayMarching-Editor/';
+var root = 'https://gre-v-el.github.io/RayMarching-Editor/';
 
 loader = new THREE.FileLoader();
 
