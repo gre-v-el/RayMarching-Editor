@@ -2,7 +2,9 @@ import * as THREE from 'https://threejs.org/build/three.module.js'
 
 import { Vector3, Quaternion, Euler } from 'https://threejs.org/build/three.module.js'
 
-var root = 'https://gre-v-el.github.io/RayMarching-Editor/';
+var root = ''//'https://gre-v-el.github.io/RayMarching-Editor/';
+
+import * as CONTROLS from './controls.js'
 
 // three.js setups
 var canvasHTML = document.getElementById('canvas');
@@ -65,6 +67,8 @@ function countLoads() {
 	}
 }
 
+CONTROLS.init();
+
 // vars
 var camPos = new Vector3(0, 0, 2);
 var camRotPitch = new Quaternion();
@@ -87,38 +91,38 @@ function tick() {
 
 function cameraTick(dt) {
 
-	if (controls.mouseRight) {
+	if (CONTROLS.controls.mouseRight) {
 
-		camRotPitch.multiply(new Quaternion().setFromEuler(new Euler(controls.mouseDY / mouseSensitivity, 0, 0)));
+		camRotPitch.multiply(new Quaternion().setFromEuler(new Euler(CONTROLS.controls.mouseDY / mouseSensitivity, 0, 0)));
 
-		camRotYaw.multiply(new Quaternion().setFromEuler(new Euler(0, controls.mouseDX / mouseSensitivity, 0)));
+		camRotYaw.multiply(new Quaternion().setFromEuler(new Euler(0, CONTROLS.controls.mouseDX / mouseSensitivity, 0)));
 
 
 		camPos.add( new Vector3(0, 0, 1)
 				.applyQuaternion(camRotPitch.clone().invert())
 				.applyQuaternion(camRotYaw.clone().invert())
-				.multiplyScalar(moveSpeed * dt * (controls.s - controls.w))
+				.multiplyScalar(moveSpeed * dt * (CONTROLS.controls.s - CONTROLS.controls.w))
 		);
 		camPos.add( new Vector3(1, 0, 0)
 				.applyQuaternion(camRotPitch.clone().invert())
 				.applyQuaternion(camRotYaw.clone().invert())
-				.multiplyScalar(moveSpeed * dt * (controls.d - controls.a))
+				.multiplyScalar(moveSpeed * dt * (CONTROLS.controls.d - CONTROLS.controls.a))
 		);
 		camPos.add( new Vector3(0, 1, 0)
 				.applyQuaternion(camRotPitch.clone().invert())
 				.applyQuaternion(camRotYaw.clone().invert())
-				.multiplyScalar(moveSpeed * dt * (controls.e - controls.q))
+				.multiplyScalar(moveSpeed * dt * (CONTROLS.controls.e - CONTROLS.controls.q))
 		);
 	}
 
-	if(controls.mouseRight && !prevControls.mouseRight) {
+	if(CONTROLS.controls.mouseRight && !CONTROLS.prevControls.mouseRight) {
 		canvasHTML.requestPointerLock();
 	}
-	else if(!controls.mouseRight && prevControls.mouseRight){
+	else if(!CONTROLS.controls.mouseRight && CONTROLS.prevControls.mouseRight){
 		document.exitPointerLock();
 	}
 
-	updateControls();
+	CONTROLS.update();
 	rmUniforms.camPos.value = camPos;
 	rmUniforms.rotation.value = camRotPitch.clone().multiply(camRotYaw);
 }
