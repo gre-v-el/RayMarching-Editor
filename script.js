@@ -1,10 +1,4 @@
-import * as THREE from 'https://threejs.org/build/three.module.js'
-
-import { Vector3, Quaternion, Euler } from 'https://threejs.org/build/three.module.js'
-
 var root = ''//'https://gre-v-el.github.io/RayMarching-Editor/';
-
-import * as CONTROLS from './controls.js'
 
 // three.js setups
 var canvasHTML = document.getElementById('canvas');
@@ -36,10 +30,10 @@ document.exitPointerLock = document.exitPointerLock ||
 // uniforms for ray marching renderer
 var rmUniforms = {
 	aspect: { value: cameraThree.aspect },
-	camPos: { value: new Vector3(0, 0, 0) },
+	camPos: { value: new THREE.Vector3(0, 0, 0) },
 	depthMax: { value: 10 },
-	rotation: { value: new Quaternion().setFromEuler(new Euler(0, 0, 0)) },
-	lightDirection: {value: new Vector3(0.5, 0.7, 0.6)}
+	rotation: { value: new THREE.Quaternion().setFromEuler(new THREE.Euler(0, 0, 0)) },
+	lightDirection: {value: new THREE.Vector3(0.5, 0.7, 0.6)}
 };
 
 // load shaders
@@ -70,9 +64,9 @@ function countLoads() {
 CONTROLS.init();
 
 // vars
-var camPos = new Vector3(0, 0, 2);
-var camRotPitch = new Quaternion();
-var camRotYaw = new Quaternion();
+var camPos = new THREE.Vector3(0, 0, 2);
+var camRotPitch = new THREE.Quaternion();
+var camRotYaw = new THREE.Quaternion();
 
 // consts
 const moveSpeed = 1;
@@ -93,22 +87,22 @@ function cameraTick(dt) {
 
 	if (CONTROLS.controls.mouseRight) {
 
-		camRotPitch.multiply(new Quaternion().setFromEuler(new Euler(CONTROLS.controls.mouseDY / mouseSensitivity, 0, 0)));
+		camRotPitch.multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(CONTROLS.controls.mouseDY / mouseSensitivity, 0, 0)));
 
-		camRotYaw.multiply(new Quaternion().setFromEuler(new Euler(0, CONTROLS.controls.mouseDX / mouseSensitivity, 0)));
+		camRotYaw.multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(0, CONTROLS.controls.mouseDX / mouseSensitivity, 0)));
 
 
-		camPos.add( new Vector3(0, 0, 1)
+		camPos.add( new THREE.Vector3(0, 0, 1)
 				.applyQuaternion(camRotPitch.clone().invert())
 				.applyQuaternion(camRotYaw.clone().invert())
 				.multiplyScalar(moveSpeed * dt * (CONTROLS.controls.s - CONTROLS.controls.w))
 		);
-		camPos.add( new Vector3(1, 0, 0)
+		camPos.add( new THREE.Vector3(1, 0, 0)
 				.applyQuaternion(camRotPitch.clone().invert())
 				.applyQuaternion(camRotYaw.clone().invert())
 				.multiplyScalar(moveSpeed * dt * (CONTROLS.controls.d - CONTROLS.controls.a))
 		);
-		camPos.add( new Vector3(0, 1, 0)
+		camPos.add( new THREE.Vector3(0, 1, 0)
 				.applyQuaternion(camRotPitch.clone().invert())
 				.applyQuaternion(camRotYaw.clone().invert())
 				.multiplyScalar(moveSpeed * dt * (CONTROLS.controls.e - CONTROLS.controls.q))
